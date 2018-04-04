@@ -1,0 +1,11 @@
+{ "projects": [{
+    "title": "Money for children",
+    "founder": "Mark Zuckerberger",
+    "description": "We would like to take the money away from the greedy children.",
+    "moneyStart": 1000000,
+    "targetForDefunding": 0,
+    "fundsUse": "We will use the funds to throw our fancy rich people parties",
+    "rewards": "The satisfaction of taking money from a baby"
+
+}    
+]}

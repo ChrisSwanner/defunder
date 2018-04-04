@@ -1,3 +1,12 @@
-<p>
-  project-detail works!
-</p>
+<div class="card">
+  <div class="card-body">
+      <h1>Project: {{(projectToDisplay | async)?.title}}</h1><br>
+      <h2>Founder: {{(projectToDisplay | async)?.founder}}</h2><br>
+      <h3>Money to Start: {{(projectToDisplay | async)?.moneyStart}}</h3><h3>Target Defunding Goal: {{(projectToDisplay | async)?.targetForDefunding}}</h3><br>
+      <p>About: {{(projectToDisplay | async)?.description}}</p><br>
+      <p>Our Plan: {{(projectToDisplay | async)?.fundsUse}}</p><br>
+      <p>Rewards: {{(projectToDisplay | async)?.rewards}}</p><br>
+      <p>Category: {{(projectToDisplay | async)?.projectType}}</p>
+  </div>
+  <button (click)="defundProjectBy100(projectToDisplay)">Defund by $100</button>
+</div>

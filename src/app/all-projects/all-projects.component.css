@@ -1,0 +1,9 @@
+ul {
+    list-style: none;
+}
+
+.title:hover {
+    color:rgb(4, 0, 255);
+    cursor: pointer;
+    text-decoration: underline;
+}

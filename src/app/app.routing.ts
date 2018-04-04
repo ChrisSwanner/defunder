@@ -1,5 +1,7 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { ModuleWithProviders }  from '@angular/core';
+
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { CrudComponent } from './crud/crud.component';
@@ -19,7 +21,9 @@ export const appRoutes: Routes = [
         component: CrudComponent
     },
     {
-        path: 'details',
+        path: 'details/:id',
         component: ProjectDetailComponent
     }
 ];
+
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

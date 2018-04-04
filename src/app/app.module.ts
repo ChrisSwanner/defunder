@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
+import { fireBaseConfig } from './api-keys';
+import { routing } from './app.routing';
+
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppComponent } from './app.component';
@@ -13,7 +16,12 @@ import { AllProjectsComponent } from './all-projects/all-projects.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { appRoutes } from './app.routing';
 
-
+export const firebaseMasterConfig = {
+  apiKey: fireBaseConfig.apiKey,
+  authDomain: fireBaseConfig.authDomain,
+  databaseURL: fireBaseConfig.databaseURL,
+  storageBucket: fireBaseConfig.storageBucket
+};
 
 @NgModule({
   declarations: [
@@ -27,8 +35,10 @@ import { appRoutes } from './app.routing';
   imports: [
     BrowserModule,
     FormsModule,
+    routing,
     RouterModule.forRoot(appRoutes),
     AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(firebaseMasterConfig),
     AngularFireAuthModule
 
   ],

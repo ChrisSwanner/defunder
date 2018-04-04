@@ -1,3 +1,60 @@
-<p>
-  all-projects works!
-</p>
+<div *ngFor="let currentProject of projects | async"  class="card">
+    <ul>
+        <li>
+            <h2 class="title"[routerLink]="['/details', currentProject.$key]">{{currentProject.title}}</h2>
+        </li>
+    </ul>
+</div>
+<button (click)="addNewProject()">Add New Project</button>
+
+<div *ngIf="addingProject">
+    <div class="card">
+        <div class="card-title">
+            <h1>Add New Project</h1>
+        </div>
+        <div class="card-body">
+            <div>
+                <label>Project Title:</label>
+                <br>
+                <input #newTitle>
+            </div>
+            <div>
+            <div>
+                <label>Founder:</label>
+                <br>
+                <input #newFounder>
+            </div>
+            <div>
+                <label>Project Description:</label>
+                <br>
+                <input #newDescription>
+            </div>
+            <div>
+                <label>Money At Start:</label>
+                <br>
+                <input type="number" #newMoneyStart>
+            </div>
+            <div>
+                <label>Plans for future funds:</label>
+                <br>
+                <input #newFundsUse>
+            </div>
+            <div>
+                <label>Defunder Rewards:</label>
+                <br>
+                <input #newRewards>
+            </div>
+            <div>
+                <label>Project Type:</label>
+                <br>
+                <select #newProjectType>
+                    <option value="charity">Charity</option>
+                    <option value="idea">Idea</option>
+                    <option value="product">Product</option>
+                </select>
+            </div>
+            <br>
+            <button class="btn btn-dark" (click)="submitForm(newTitle.value, newFounder.value, newDescription.value, newMoneyStart.value, newFundsUse.value, newRewards.value, newProjectType.value);">Add</button>
+        </div>
+    </div>
+</div>
