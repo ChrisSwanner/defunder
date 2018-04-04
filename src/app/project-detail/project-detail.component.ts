@@ -61,9 +61,7 @@ export class ProjectDetailComponent implements OnInit {
       alert("Defunded");
       this.projectService.deleteProject(projectToDisplay);
       this.defundRedirect();
-
     }
-    
   }
 
   defundProjectBy1000(projectToDisplay) {
@@ -74,7 +72,6 @@ export class ProjectDetailComponent implements OnInit {
     if (projectToDisplay.moneyStart === 0) {
       alert("Defunded");
       this.projectService.deleteProject(projectToDisplay);
-
       this.defundRedirect();
     }
   }
@@ -87,7 +84,6 @@ export class ProjectDetailComponent implements OnInit {
     if (projectToDisplay.moneyStart === 0) {
       alert("Defunded");
       this.projectService.deleteProject(projectToDisplay);
-
       this.defundRedirect();
 
     }
@@ -99,12 +95,8 @@ export class ProjectDetailComponent implements OnInit {
       projectToDisplay.moneyStart -= projectToDisplay.moneyStart;
       alert("Defunded");
       this.projectService.deleteProject(projectToDisplay);
-
       this.defundRedirect();
 
     }
   }
-
-  
-
 }

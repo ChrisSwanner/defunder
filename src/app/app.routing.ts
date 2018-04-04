@@ -4,8 +4,9 @@ import { ModuleWithProviders }  from '@angular/core';
 
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
-import { CrudComponent } from './crud/crud.component';
 import { AllProjectsComponent } from './all-projects/all-projects.component';
+import { AdminComponent } from './admin/admin.component';
+import { AuthGuardService } from './auth-guard.service';
 
 export const appRoutes: Routes = [
     {
@@ -17,12 +18,13 @@ export const appRoutes: Routes = [
         component: AllProjectsComponent
     },
     {
-        path: 'crud',
-        component: CrudComponent
-    },
-    {
         path: 'details/:id',
         component: ProjectDetailComponent
+    },
+    {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [AuthGuardService]
     }
 ];
 

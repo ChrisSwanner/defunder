@@ -11,10 +11,10 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
-import { CrudComponent } from './crud/crud.component';
 import { AllProjectsComponent } from './all-projects/all-projects.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { appRoutes } from './app.routing';
+import { AdminComponent } from './admin/admin.component';
 
 export const firebaseMasterConfig = {
   apiKey: fireBaseConfig.apiKey,
@@ -28,9 +28,9 @@ export const firebaseMasterConfig = {
     AppComponent,
     WelcomeComponent,
     ProjectDetailComponent,
-    CrudComponent,
     AllProjectsComponent,
-    NavbarComponent
+    NavbarComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +40,6 @@ export const firebaseMasterConfig = {
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseMasterConfig),
     AngularFireAuthModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
