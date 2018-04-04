@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { Project } from '../models/project.model';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params, } from '@angular/router';
 import { ProjectService } from '../project.service';
 import { Location } from '@angular/common';
 
@@ -14,20 +14,24 @@ import { Location } from '@angular/common';
 })
 export class ProjectDetailComponent implements OnInit {
   projectId: string;
-  projectToDisplay;
+  projectDisplay;
 
   constructor(
-    private router: ActivatedRoute,
+    private router: Router,
+    private route: ActivatedRoute,
     private location: Location, 
     private projectService: ProjectService
   ) { }
   
 
   ngOnInit() {
-    this.router.params.forEach((urlParameters) => {
+    this.route.params.forEach((urlParameters) => {
       this.projectId = urlParameters['id'];
     })
-    this.projectToDisplay = this.projectService.getProjectById(this.projectId);
+    this.projectService.getProjectById(this.projectId).subscribe(dataLastEmittedFromObserver => {
+      this.projectDisplay = dataLastEmittedFromObserver;
+
+    })
   }
 
   defundProgressColor(projectToDisplay) {
@@ -44,40 +48,61 @@ export class ProjectDetailComponent implements OnInit {
       return "10"
     }
   }
+  defundRedirect() {
+    this.router.navigate(['/'])
+  }
 
   defundProjectBy100(projectToDisplay) {
-    this.projectService.updateDefunding(projectToDisplay);
-    if (projectToDisplay.moneyStart > 0) {
+    if (projectToDisplay.moneyStart >= 100) {
       projectToDisplay.moneyStart -= 100;
-    } else if (projectToDisplay.moneyStart === 0) {
+      this.projectService.updateDefunding(projectToDisplay);
+    } 
+    if (projectToDisplay.moneyStart === 0 ) {
       alert("Defunded");
+      this.projectService.deleteProject(projectToDisplay);
+      this.defundRedirect();
+
     }
+    
   }
 
   defundProjectBy1000(projectToDisplay) {
-    this.projectService.updateDefunding(projectToDisplay);
-    if (projectToDisplay.moneyStart > 0) {
+    if (projectToDisplay.moneyStart >= 1000) {
       projectToDisplay.moneyStart -= 1000;
-    } else if (projectToDisplay.moneyStart === 0) {
+      this.projectService.updateDefunding(projectToDisplay);
+    } 
+    if (projectToDisplay.moneyStart === 0) {
       alert("Defunded");
+      this.projectService.deleteProject(projectToDisplay);
+
+      this.defundRedirect();
     }
   }
 
   defundProjectBy10000(projectToDisplay) {
-    this.projectService.updateDefunding(projectToDisplay);
-    if (projectToDisplay.moneyStart > 0) {
+    if (projectToDisplay.moneyStart >= 10000) {
       projectToDisplay.moneyStart -= 10000;
-    } else if (projectToDisplay.moneyStart === 0) {
+      this.projectService.updateDefunding(projectToDisplay);
+    } 
+    if (projectToDisplay.moneyStart === 0) {
       alert("Defunded");
+      this.projectService.deleteProject(projectToDisplay);
+
+      this.defundRedirect();
+
     }
   }
 
   defundProjectByAll(projectToDisplay) {
-    this.projectService.updateDefunding(projectToDisplay);
     if (projectToDisplay.moneyStart > 0) {
+      this.projectService.updateDefunding(projectToDisplay);
       projectToDisplay.moneyStart -= projectToDisplay.moneyStart;
       alert("Defunded");
-    } 
+      this.projectService.deleteProject(projectToDisplay);
+
+      this.defundRedirect();
+
+    }
   }
 
   

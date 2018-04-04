@@ -1,10 +1,14 @@
-<div *ngFor="let currentProject of projects | async"  class="card">
-    <ul>
-        <li>
-            <h2 class="title"[routerLink]="['/details', currentProject.$key]">{{currentProject.title}}</h2>
-        </li>
-    </ul>
-</div>
+
+   <div *ngIf="normal">
+    <div  *ngFor="let currentProject of projects | async"  class="card">
+            <ul>
+                <li>
+                    <h2 class="title"[routerLink]="['/details', currentProject.$key]">{{currentProject.title}}</h2>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 <button (click)="addNewProject()">Add New Project</button>
 
 <div *ngIf="addingProject">
@@ -16,7 +20,7 @@
             <div>
                 <label>Project Title:</label>
                 <br>
-                <input #newTitle>
+                <input type="text" #newTitle required>
             </div>
             <div>
             <div>
@@ -57,4 +61,31 @@
             <button class="btn btn-dark" (click)="submitForm(newTitle.value, newFounder.value, newDescription.value, newMoneyStart.value, newFundsUse.value, newRewards.value, newProjectType.value);">Add</button>
         </div>
     </div>
+</div>
+</div>
+<button (click)="filter()">Filter</button>
+<div *ngIf="isFiltering">
+<div class="card">
+    <div class="card-title">
+        <h2>Filter Projects</h2>
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <label>Select Project Type</label>
+            <select class="form-control" name="type" [(ngModel)]="projectType">
+                <option value="charity">Charity</option>
+                <option value="idea">Idea</option>
+                <option value="product">Product</option>
+            </select>
+        </div>
+        <button (click)="filterProjects(projectType)">Filter</button>
+        <br>
+        <div *ngIf="projectFilter">
+            <ul>
+                <li id="projectList" *ngFor="let project of filteredProjects">
+                    <h2 [routerLink]="['/details', project.$key]" class="title">{{project.title}}</h2></li>
+            </ul>
+        </div>
+    </div>
+</div>
 </div>

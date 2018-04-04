@@ -27,12 +27,12 @@ export class ProjectService {
 
     updateDefunding(localUpdatedProject) {
         let projectEntryInFirebase = this.getProjectById(localUpdatedProject.$key);
-        console.log(localUpdatedProject.$key)
         projectEntryInFirebase.update({moneyStart: localUpdatedProject.moneyStart});
     }
 
     deleteProject(localProjectToDelete) {
         let projectEntryInFirebase = this.getProjectById(localProjectToDelete.$key);
         projectEntryInFirebase.remove();
+        this.getProjectById(localProjectToDelete.moneyStart).remove();
     }
 }

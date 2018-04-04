@@ -15,6 +15,8 @@ import { ProjectService } from '../project.service';
 export class AllProjectsComponent {
    addingProject: boolean = false;
   public projectFilter: boolean = false;
+  public isFiltering: boolean = false;
+  public normal: boolean = true;
 
   constructor(private router: Router, private projectService: ProjectService) { }
 
@@ -34,10 +36,17 @@ export class AllProjectsComponent {
 
     addNewProject() {
       this.addingProject = true;
+      this.normal = false;
+      this.isFiltering = false;
     }
 
+    filter() {
+      this.isFiltering = true;
+      this.normal = false;
+    }
 
     filterProjects(projectType) {
+      this.isFiltering = true;
       this.filteredProjects = [];
       this.projectFilter = true;
       for (let i = 0; i < this.projectDisplay.length; i++) {
@@ -50,5 +59,6 @@ export class AllProjectsComponent {
     submitForm(title: string,  founder: string,  description: string,  moneyStart: number,  fundsUse: string,  rewards: string,  projectType: string) {
       let newProject: Project = new Project(title, founder, description, moneyStart,fundsUse,rewards, projectType)
       this.projectService.addProject(newProject);
+      this.addingProject = false;
     }
   }
