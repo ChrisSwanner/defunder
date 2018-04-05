@@ -7,6 +7,9 @@
       <p>Our Plan: {{projectDisplay?.fundsUse}}</p><br>
       <p>Rewards: {{projectDisplay?.rewards}}</p><br>
       <p>Category: {{projectDisplay?.projectType}}</p>
+      <button (click)="defundProjectBy100(projectDisplay)">Defund by $100</button><br><br>
+  <button (click)="defundProjectBy1000(projectDisplay)">Defund by $1000</button><br><br>
+  <button (click)="defundProjectBy10000(projectDisplay)">Defund by $10000</button>
       <div *ngIf="admin">
           <div class="card">
               <div class="card-title">
@@ -16,38 +19,38 @@
                   <div>
                       <label>Project Title:</label>
                       <br>
-                      <input type="text" #newTitle required>
+                      <input type="text" [(ngModel)]="projectDisplay.title">
                   </div>
                   <div>
                   <div>
                       <label>Founder:</label>
                       <br>
-                      <input #newFounder>
+                      <input [(ngModel)]="projectDisplay.founder">
                   </div>
                   <div>
                       <label>Project Description:</label>
                       <br>
-                      <input #newDescription>
+                      <input [(ngModel)]="projectDisplay.description">
                   </div>
                   <div>
                       <label>Money At Start:</label>
                       <br>
-                      <input type="number" #newMoneyStart>
+                      <input type="number" [(ngModel)]="projectDisplay.moneyStart">
                   </div>
                   <div>
                       <label>Plans for future funds:</label>
                       <br>
-                      <input #newFundsUse>
+                      <input [(ngModel)]="projectDisplay.fundsUse">
                   </div>
                   <div>
                       <label>Defunder Rewards:</label>
                       <br>
-                      <input #newRewards>
+                      <input [(ngModel)]="projectDisplay.rewards">
                   </div>
                   <div>
                       <label>Project Type:</label>
                       <br>
-                      <select #newProjectType>
+                      <select [(ngModel)]="projectDisplay.projectType">
                           <option value="charity">Charity</option>
                           <option value="idea">Idea</option>
                           <option value="product">Product</option>
@@ -58,8 +61,6 @@
       </div>
   </div>
   
-  <button (click)="defundProjectBy100(projectDisplay)">Defund by $100</button>
-  <button (click)="defundProjectBy1000(projectDisplay)">Defund by $1000</button>
-  <button (click)="defundProjectBy10000(projectDisplay)">Defund by $10000</button>
+  
 
 </div>

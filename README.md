@@ -15,7 +15,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 * As a user, I want the option to post my own project or charitable act that seeks funding.  (COMPLETE)
 
-* As an administrator, I want to add, update, or delete projects as necessary. (User authentication is not required).
+* As an administrator, I want to add, update, or delete projects as necessary. (User authentication is not required). (COMPLETE)
 
 * As a user, as the site grows I want ideas, projects, and charitable acts to be separate types of objects, each residing on their own page. Things like charitable acts might have different types of properties/details than companies seeking startup funding, too.
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { Project } from '../models/project.model';
@@ -15,6 +15,7 @@ import { AuthService } from '../auth.service';
   providers: [ProjectService]
 })
 export class ProjectDetailComponent implements OnInit {
+  @Input() selectedProject;
   projectId: string;
   projectDisplay;
 
