@@ -8,4 +8,18 @@
 ul, li {
     list-style: none;
     text-align: center;
+    
 }
+
+html, body{ 
+    background: url("https://i.pinimg.com/originals/22/3f/25/223f259f3e35259928892c62fb7b3d59.gif") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .card, .card-body, .card-title {
+      background-color: rgba(255, 255, 255, 0.488)!important;
+  }
+

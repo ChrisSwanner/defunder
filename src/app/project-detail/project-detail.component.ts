@@ -18,6 +18,7 @@ export class ProjectDetailComponent implements OnInit {
   @Input() selectedProject;
   projectId: string;
   projectDisplay;
+  private editing: boolean = false;
 
   constructor(
     private router: Router,
@@ -40,6 +41,10 @@ export class ProjectDetailComponent implements OnInit {
       this.projectDisplay = dataLastEmittedFromObserver;
 
     })
+  }
+
+  edit() {
+    this.editing= true;
   }
 
   defundProgressColor(projectToDisplay) {
@@ -119,5 +124,6 @@ export class ProjectDetailComponent implements OnInit {
 
   update(projectToDisplay) {
     this.projectService.updateProject(projectToDisplay);
+    this.editing = false;
   }
 }

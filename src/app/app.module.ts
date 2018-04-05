@@ -18,6 +18,9 @@ import { AdminComponent } from './admin/admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { AuthService } from './auth.service';
+import { CharityComponent } from './charity/charity.component';
+import { IdeaComponent } from './idea/idea.component';
+import { ProductComponent } from './product/product.component';
 
 export const firebaseMasterConfig = {
   apiKey: fireBaseConfig.apiKey,
@@ -33,7 +36,10 @@ export const firebaseMasterConfig = {
     ProjectDetailComponent,
     AllProjectsComponent,
     NavbarComponent,
-    AdminComponent
+    AdminComponent,
+    CharityComponent,
+    IdeaComponent,
+    ProductComponent
     
   ],
   imports: [

@@ -24,7 +24,7 @@ export class AdminComponent {
       this.projectDisplay = dataLastEmittedFromObserver;
       console.log(this.projectDisplay)
     })
-    this.projects = this.projectService.getProjects();
-  }
+      this.projects = this.projectService.getProjects();
+    }
   }
 

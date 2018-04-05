@@ -9,7 +9,7 @@
         </div>
     </div>
 
-<button (click)="addNewProject()">Add New Project</button>
+<button class="btn btn-dark" (click)="addNewProject()">Add New Project</button>
 
 <div *ngIf="addingProject">
     <div class="card">
@@ -63,29 +63,10 @@
     </div>
 </div>
 </div>
-<button (click)="filter()">Filter</button>
-<div *ngIf="isFiltering">
-<div class="card">
-    <div class="card-title">
-        <h2>Filter Projects</h2>
-    </div>
-    <div class="card-body">
-        <div class="form-group">
-            <label>Select Project Type</label>
-            <select class="form-control" name="type" [(ngModel)]="projectType">
-                <option value="charity">Charity</option>
-                <option value="idea">Idea</option>
-                <option value="product">Product</option>
-            </select>
-        </div>
-        <button (click)="filterProjects(projectType)">Filter</button>
-        <br>
-        <div *ngIf="projectFilter">
             <ul>
                 <li id="projectList" *ngFor="let project of filteredProjects">
                     <h2 [routerLink]="['/details', project.$key]" class="title">{{project.title}}</h2></li>
             </ul>
-        </div>
-    </div>
-</div>
-</div>
+
+
+

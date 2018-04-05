@@ -20,16 +20,16 @@ export class AllProjectsComponent {
 
   constructor(private router: Router, private projectService: ProjectService) { }
 
-  projects: FirebaseListObservable<any[]>;
-  filteredProjects: Project[] = [];
+  public projects: FirebaseListObservable<any[]>;
   projectDisplay;
   
-
+  submitRedirect() {
+    this.router.navigate(['/']);
+  }
 
   ngOnInit() {
     this.projectService.getProjects().subscribe(dataLastEmittedFromObserver => {
       this.projectDisplay = dataLastEmittedFromObserver;
-      console.log(this.projects)
     })
     this.projects = this.projectService.getProjects();
   }
@@ -40,25 +40,10 @@ export class AllProjectsComponent {
       this.isFiltering = false;
     }
 
-    filter() {
-      this.isFiltering = true;
-      this.normal = false;
-    }
-
-    filterProjects(projectType) {
-      this.isFiltering = true;
-      this.filteredProjects = [];
-      this.projectFilter = true;
-      for (let i = 0; i < this.projectDisplay.length; i++) {
-        if (this.projectDisplay[i].projectType === projectType) {
-          this.filteredProjects.push(this.projectDisplay[i]);
-        }
-      }
-    }
-
     submitForm(title: string,  founder: string,  description: string,  moneyStart: number,  fundsUse: string,  rewards: string,  projectType: string) {
       let newProject: Project = new Project(title, founder, description, moneyStart,fundsUse,rewards, projectType)
       this.projectService.addProject(newProject);
       this.addingProject = false;
+      this.submitRedirect();
     }
   }

@@ -7,6 +7,9 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 import { AllProjectsComponent } from './all-projects/all-projects.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuardService } from './auth-guard.service';
+import { CharityComponent } from './charity/charity.component';
+import { IdeaComponent } from './idea/idea.component';
+import { ProductComponent } from './product/product.component';
 
 export const appRoutes: Routes = [
     {
@@ -25,7 +28,19 @@ export const appRoutes: Routes = [
         path: 'admin',
         component: AdminComponent,
         canActivate: [AuthGuardService]
-    }
+    },
+    {
+        path: 'charity',
+        component: CharityComponent
+    },
+    {
+        path: 'idea',
+        component: IdeaComponent
+    },
+    {
+        path: 'product',
+        component: ProductComponent
+    },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

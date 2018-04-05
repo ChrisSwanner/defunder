@@ -10,6 +10,10 @@
       <button (click)="defundProjectBy100(projectDisplay)">Defund by $100</button><br><br>
   <button (click)="defundProjectBy1000(projectDisplay)">Defund by $1000</button><br><br>
   <button (click)="defundProjectBy10000(projectDisplay)">Defund by $10000</button>
+  <br>
+  <br>
+  <div *ngIf="admin"><button (click)="edit()">Edit Project</button></div>
+  <div *ngIf="editing">
       <div *ngIf="admin">
           <div class="card">
               <div class="card-title">
@@ -56,8 +60,10 @@
                           <option value="product">Product</option>
                       </select>
                   </div>
-          <button (click)="delete(projectDisplay)">Delete</button>
-          <button (click)="update(projectDisplay)">Update</button>
+                  <br>
+                </div>
+          <button (click)="delete(projectDisplay)">Delete</button><br><br>
+          <button (click)="update(projectDisplay)">Update</button><br><br>
       </div>
   </div>
   
