@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { fireBaseConfig } from './api-keys';
 import { routing } from './app.routing';
-
+import { AuthGuardService } from './auth-guard.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppComponent } from './app.component';
@@ -15,6 +15,9 @@ import { AllProjectsComponent } from './all-projects/all-projects.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { appRoutes } from './app.routing';
 import { AdminComponent } from './admin/admin.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { AuthService } from './auth.service';
 
 export const firebaseMasterConfig = {
   apiKey: fireBaseConfig.apiKey,
@@ -30,7 +33,8 @@ export const firebaseMasterConfig = {
     ProjectDetailComponent,
     AllProjectsComponent,
     NavbarComponent,
-    AdminComponent,
+    AdminComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -39,9 +43,11 @@ export const firebaseMasterConfig = {
     RouterModule.forRoot(appRoutes),
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseMasterConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpClientModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

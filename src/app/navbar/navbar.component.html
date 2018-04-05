@@ -4,9 +4,25 @@
   </div>
   <div id="navbar" class="collapse navbar-collapse">
     <ul class="nav navbar-nav">
-      <li><a routerLink="/">Home</a></li>
-      <li><a routerLink="/projects">Projects</a></li>
-      <li><a routerLink="/admin">Login</a></li>
+      <li ><a class="navLink" routerLink="/">Home</a></li>
+      <li  ><a class="navLink" routerLink="/projects">Projects</a></li>
+      <div *ngIf="LoggedOut">
+        <li>
+          <a class="navLink" (click)="login()">Login</a>
+        </li>
+      </div>
+      <div *ngIf="LoggedIn">
+        <li class="navLink">
+          <a  (click)="logout()">Logout</a>
+        </li>
+      </div>
+      <div *ngIf="admin">
+        <li class="navLink">
+          <a routerLink="/admin">Admin</a>
+        </li>
+      </div>
+
+      
       
     </ul>
   </div>

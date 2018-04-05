@@ -5,7 +5,9 @@ import { Project } from '../models/project.model';
 import { Router, ActivatedRoute, Params, } from '@angular/router';
 import { ProjectService } from '../project.service';
 import { Location } from '@angular/common';
-
+import { NavbarComponent } from '../navbar/navbar.component';
+import { AuthService } from '../auth.service';
+ 
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
@@ -20,11 +22,16 @@ export class ProjectDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private location: Location, 
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private authService: AuthService
+    
   ) { }
+
+  public admin: Boolean = this.authService.admin;
   
 
   ngOnInit() {
+    console.log(this.admin);
     this.route.params.forEach((urlParameters) => {
       this.projectId = urlParameters['id'];
     })
@@ -50,6 +57,10 @@ export class ProjectDetailComponent implements OnInit {
   }
   defundRedirect() {
     this.router.navigate(['/'])
+  }
+
+  adminRedirect() {
+    this.router.navigate(['/admin'])
   }
 
   defundProjectBy100(projectToDisplay) {
@@ -98,5 +109,14 @@ export class ProjectDetailComponent implements OnInit {
       this.defundRedirect();
 
     }
+  }
+
+  delete(projectToDisplay) {
+    this.projectService.deleteProject(projectToDisplay);
+    this.adminRedirect();
+  }
+
+  update(projectToDisplay) {
+    this.projectService.updateProject(projectToDisplay);
   }
 }

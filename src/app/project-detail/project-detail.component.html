@@ -7,7 +7,57 @@
       <p>Our Plan: {{projectDisplay?.fundsUse}}</p><br>
       <p>Rewards: {{projectDisplay?.rewards}}</p><br>
       <p>Category: {{projectDisplay?.projectType}}</p>
+      <div *ngIf="admin">
+          <div class="card">
+              <div class="card-title">
+                  <h1>Edit Project</h1>
+              </div>
+              <div class="card-body">
+                  <div>
+                      <label>Project Title:</label>
+                      <br>
+                      <input type="text" #newTitle required>
+                  </div>
+                  <div>
+                  <div>
+                      <label>Founder:</label>
+                      <br>
+                      <input #newFounder>
+                  </div>
+                  <div>
+                      <label>Project Description:</label>
+                      <br>
+                      <input #newDescription>
+                  </div>
+                  <div>
+                      <label>Money At Start:</label>
+                      <br>
+                      <input type="number" #newMoneyStart>
+                  </div>
+                  <div>
+                      <label>Plans for future funds:</label>
+                      <br>
+                      <input #newFundsUse>
+                  </div>
+                  <div>
+                      <label>Defunder Rewards:</label>
+                      <br>
+                      <input #newRewards>
+                  </div>
+                  <div>
+                      <label>Project Type:</label>
+                      <br>
+                      <select #newProjectType>
+                          <option value="charity">Charity</option>
+                          <option value="idea">Idea</option>
+                          <option value="product">Product</option>
+                      </select>
+                  </div>
+          <button (click)="delete(projectDisplay)">Delete</button>
+          <button (click)="update(projectDisplay)">Update</button>
+      </div>
   </div>
+  
   <button (click)="defundProjectBy100(projectDisplay)">Defund by $100</button>
   <button (click)="defundProjectBy1000(projectDisplay)">Defund by $1000</button>
   <button (click)="defundProjectBy10000(projectDisplay)">Defund by $10000</button>

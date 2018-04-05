@@ -8,22 +8,33 @@ import { Observable } from 'rxjs/Observable';
 export class AuthService {
   public user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
+
+  public admin: Boolean;
+
   constructor(public afAuth: AngularFireAuth, private router: Router) {
     this.user = afAuth.authState;
     this.user.subscribe(
       (user) => {
         if (user) {
           this.userDetails = user;
+          this.admin = true;
         }
         else {
           this.userDetails = null;
+          this.admin = false;
         }
       }
     );
   }
   login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    
+    var provider = new firebase.auth.GoogleAuthProvider();
+    this.afAuth.auth.signInWithPopup(provider)
+    provider.setCustomParameters({
+      prompt: 'select_account'
+    })
     .then((res) => this.router.navigate(['admin']));
+    
   }
 
   logout() {
